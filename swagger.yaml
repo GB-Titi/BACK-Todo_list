@@ -1,0 +1,210 @@
+openapi: 3.0.0
+paths:
+  /tasks:
+    post:
+      operationId: TasksController_create
+      summary: Créer une nouvelle tâche
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskDto'
+      responses:
+        '201':
+          description: Tâche créée
+      tags: &ref_0
+        - tasks
+    get:
+      operationId: TasksController_findAll
+      summary: Récupérer toutes les tâches
+      parameters: []
+      responses:
+        '200':
+          description: Liste des tâches
+      tags: *ref_0
+  /tasks/{id}:
+    get:
+      operationId: TasksController_findOne
+      summary: Récupérer une tâche spécifique
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tâche trouvée
+      tags: *ref_0
+    patch:
+      operationId: TasksController_update
+      summary: Mettre à jour une tâche
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskDto'
+      responses:
+        '200':
+          description: Tâche mise à jour
+      tags: *ref_0
+    delete:
+      operationId: TasksController_remove
+      summary: Supprimer une tâche
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Tâche supprimée
+      tags: *ref_0
+  /keywords:
+    post:
+      operationId: KeywordsController_create
+      summary: Ajouter un nouveau mot-clef
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateKeywordDto'
+      responses:
+        '201':
+          description: Mot-clef créé
+      tags: &ref_1
+        - keywords
+    get:
+      operationId: KeywordsController_findAll
+      summary: Récupérer tous les mots-clefs
+      parameters: []
+      responses:
+        '200':
+          description: Liste des mots-clefs
+      tags: *ref_1
+  /keywords/{id}:
+    get:
+      operationId: KeywordsController_findOne
+      summary: Récupérer un mot-clef spécifique
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Mot-clef trouvé
+      tags: *ref_1
+    patch:
+      operationId: KeywordsController_update
+      summary: Mettre à jour un mot-clef
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateKeywordDto'
+      responses:
+        '200':
+          description: Mot-clef mis à jour
+      tags: *ref_1
+    delete:
+      operationId: KeywordsController_remove
+      summary: Supprimer un mot-clef
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Mot-clef supprimé
+      tags: *ref_1
+info:
+  title: To-do List API
+  description: The To-do List API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: tasks
+    description: ''
+servers: []
+components:
+  schemas:
+    CreateTaskDto:
+      type: object
+      properties: {}
+    UpdateTaskDto:
+      type: object
+      properties: {}
+    CreateKeywordDto:
+      type: object
+      properties: {}
+    UpdateKeywordDto:
+      type: object
+      properties: {}
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: ID de la tâche
+        title:
+          type: string
+          description: Titre de la tâche
+        task:
+          type: string
+          description: Description de la tâche
+        author:
+          type: string
+          description: Auteur de la tâche
+        date:
+          type: string
+          format: date
+          description: Date de création de la tâche
+        keywords:
+          description: Mots-clefs associés à la tâche
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - title
+        - task
+        - author
+        - date
+        - keywords
+    Keyword:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: ID du mot-clé
+        name:
+          type: string
+          description: Nom du mot-clé
+      required:
+        - id
+        - name

@@ -8,14 +8,13 @@ import { KeywordsModule } from './keywords/keywords.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'admin',
-      password: 'Admin123',
+      type: 'mongodb',
+      url: 'mongodb+srv://admin:Admin123@todo-db.j1hqlaj.mongodb.net/?retryWrites=true&w=majority',
       database: 'todo-db',
       entities: [Task, Keyword],
       synchronize: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     }),
     TasksModule,
     KeywordsModule,
