@@ -23,7 +23,7 @@ async function bootstrap() {
 
   // Save Swagger document as YAML
   const yamlDocument = yaml.dump(document);
-  fs.writeFileSync('./swagger.yaml', yamlDocument, 'utf8');
+  fs.writeFileSync('./dist/swagger.yaml', yamlDocument, 'utf8');
 
   await app.listen(3000);
 }

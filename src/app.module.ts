@@ -4,6 +4,8 @@ import { Task } from './tasks/entities/task.entity';
 import { Keyword } from './keywords/entities/keyword.entity';
 import { TasksModule } from './tasks/tasks.module';
 import { KeywordsModule } from './keywords/keywords.module';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { KeywordsModule } from './keywords/keywords.module';
     TasksModule,
     KeywordsModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

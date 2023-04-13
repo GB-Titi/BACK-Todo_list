@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpCode, Delete } from '@nestjs/common';
 import { CreateKeywordDto } from './dto/create-keyword.dto';
 import { UpdateKeywordDto } from './dto/update-keyword.dto';
 
@@ -20,6 +20,8 @@ export class KeywordsService {
     return `This action updates a #${id} keyword`;
   }
 
+  @Delete()
+  @HttpCode(204)
   remove(id: number) {
     return `This action removes a #${id} keyword`;
   }
