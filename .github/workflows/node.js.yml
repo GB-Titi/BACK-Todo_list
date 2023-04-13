@@ -25,4 +25,4 @@ jobs:
     - run: npm run test
     - run: npm run test:e2e
     - run: npm run test:cov
-    - run: npm run start
+    - run: open-api-gen
