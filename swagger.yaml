@@ -153,16 +153,75 @@ components:
   schemas:
     CreateTaskDto:
       type: object
-      properties: {}
+      properties:
+        title:
+          type: string
+          description: Titre de la tâche
+        task:
+          type: string
+          description: Description de la tâche
+        author:
+          type: string
+          description: Auteur de la tâche
+        date:
+          type: string
+          format: date
+          description: Date de création de la tâche
+        keywords:
+          description: Mots-clefs associés à la tâche
+          type: array
+          items:
+            type: string
+      required:
+        - title
+        - task
+        - author
+        - date
+        - keywords
     UpdateTaskDto:
       type: object
-      properties: {}
+      properties:
+        title:
+          type: string
+          description: Titre de la tâche
+        task:
+          type: string
+          description: Description de la tâche
+        author:
+          type: string
+          description: Auteur de la tâche
+        date:
+          type: string
+          format: date
+          description: Date de création de la tâche
+        keywords:
+          description: Mots-clefs associés à la tâche
+          type: array
+          items:
+            type: string
     CreateKeywordDto:
       type: object
-      properties: {}
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: ID du mot-clé
+        name:
+          type: string
+          description: Nom du mot-clé
+      required:
+        - id
+        - name
     UpdateKeywordDto:
       type: object
-      properties: {}
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: ID du mot-clé
+        name:
+          type: string
+          description: Nom du mot-clé
     Task:
       type: object
       properties:
