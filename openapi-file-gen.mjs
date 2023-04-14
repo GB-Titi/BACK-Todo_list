@@ -1,8 +1,10 @@
 import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./dist/src/app.module.js";
+import { AppModule } from "./dist/app.module.js";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { createMongoMemoryConnection } from '../test/mongo-memory-connection.provider';
+import { createMongoMemoryConnection } from './dist/test/mongo-memory-connection.provider.js';
 import * as fs from "fs";
+import * as swaggerUiDist from "swagger-ui-dist";
+import * as path from "path";
 
 
 const { connection, mongod } = await createMongoMemoryConnection();
@@ -27,7 +29,7 @@ fs.writeFile("dist/swagger.json", JSON.stringify(document), function (err) {
         console.error(err);
         process.exit(1);
     } else {
-        const swaggerIndexContent = fs.readFileSync(path.join(SwaggerUI.absolutePath(), "index.html"), "utf8");
+        const swaggerIndexContent = fs.readFileSync(path.join(swaggerUiDist.absolutePath(), "index.html"), "utf8");
         const updatedContent = swaggerIndexContent.replace("https://petstore.swagger.io/v2/swagger.json", "./swagger.json");
         fs.writeFileSync("dist/swagger.html", updatedContent);
 

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TasksModule } from '../src/tasks/tasks.module';
-import { KeywordsModule } from '../src/keywords/keywords.module';
-import { AppService } from '../src/app.service';
-import { AppController } from '../src/app.controller';
+import { TasksModule } from '../tasks/tasks.module';
+import { KeywordsModule } from '../keywords/keywords.module';
+import { AppService } from '../app.service';
+import { AppController } from '../app.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { createMongoMemoryConnection } from './mongo-memory-connection.provider';
 
