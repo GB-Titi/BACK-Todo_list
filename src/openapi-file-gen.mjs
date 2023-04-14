@@ -27,6 +27,12 @@ fs.writeFile("dist/swagger.json", JSON.stringify(document), function(err) {
     console.error(err);
     process.exit(1);
   } else {
+    
+const swaggerIndexContent = fs.readFileSync(path.join(SwaggerUI.absolutePath(), "index.html"), "utf8");
+const updatedContent = swaggerIndexContent.replace("https://petstore.swagger.io/v2/swagger.json", "./swagger.json");
+fs.writeFileSync("dist/swagger.html", updatedContent);
+
+console.log("Swagger files generated.");
     process.exit(0);
   }
 });
