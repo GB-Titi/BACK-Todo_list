@@ -33,6 +33,7 @@
     "mongodb": "^3.7.3",
     "mongodb-memory-server": "^8.12.2",
     "mongoose": "^7.0.3",
+    "ng-openapi-gen": "^0.24.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.6.2",
