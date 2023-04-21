@@ -34,12 +34,15 @@ jobs:
     - name: Set NODE_ENV and MONGODB_URI
       run: |
         echo "NODE_ENV=gen" >> $GITHUB_ENV
-        echo "MONGODB_URI=$(node getMongoUri.js)" >> $GITHUB_ENV
+        MONGODB_URI="$(node getMongoUri.js)"
+        echo "MONGODB_URI=$MONGODB_URI" >> $GITHUB_ENV
 
     - name: Remove temporary file
       run: rm getMongoUri.js
 
-    - run: npm run open-api-gen
+    - name: Build and generate OpenAPI files
+      run: npm run open-api-gen
+
     - name: Copy Swagger files to _site
       run: |
         cp dist/swagger.json _site/swagger.json
