@@ -1,5 +1,5 @@
 import { NestFactory } from "@nestjs/core";
-import { TestModule } from "./dist/tests/tests.module.js";
+import { TestModule } from "./dist/test/tests.module.js";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { createMongoMemoryConnection } from './dist/test/mongo-memory-connection.provider.js';
 import * as fs from "fs";
