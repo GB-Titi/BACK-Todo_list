@@ -22,12 +22,11 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm install
-    - run: npm install -g ng-openapi-gen
     - run: npm run test
     - run: npm run test:e2e
     - run: npm run test:cov
     - run: npm run build:test
-    - run: npm open-api-gen
+    - run: npm run open-api-gen
     - name: Copy Swagger files to _site
       run: |
         cp dist/swagger.json _site/swagger.json
