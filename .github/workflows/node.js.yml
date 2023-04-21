@@ -25,6 +25,10 @@ jobs:
     - run: npm run test
     - run: npm run test:e2e
     - run: npm run test:cov
+    - name: Set NODE_ENV and MONGODB_URI
+      run: |
+        echo "NODE_ENV=gen" >> $GITHUB_ENV
+        echo "MONGODB_URI=$(node -e 'require("./test/mongo-memory-connection.provider").createMongoMemoryConnection().then(({ mongod }) => console.log(mongod.getUri()))')" >> $GITHUB_ENV
     - run: npm run open-api-gen
     - name: Copy Swagger files to _site
       run: |
