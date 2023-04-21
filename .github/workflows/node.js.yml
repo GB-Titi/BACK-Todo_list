@@ -26,11 +26,10 @@ jobs:
     - run: npm run test:e2e
     - run: npm run test:cov
     - run: npm run build:test
-    - run: node swagger-initializer.js
     - run: ls
     - name: Display dist/test folder content
       run: |
-        ls
+        ls dist/test
     - name: Create temporary file to get MongoDB URI
       run: |
         echo "const path = require('path');" > getMongoUri.js
