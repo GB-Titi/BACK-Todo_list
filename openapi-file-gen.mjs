@@ -22,8 +22,6 @@ const config = new DocumentBuilder()
     .build();
 const document = SwaggerModule.createDocument(app, config);
 
-
-
 fs.writeFile("dist/swagger.json", JSON.stringify(document), function (err) {
     if (err) {
         console.error(err);
