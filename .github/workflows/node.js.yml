@@ -22,20 +22,15 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm install
+    - run: npm install -g ng-openapi-gen
     - run: npm run test
     - run: npm run test:e2e
     - run: npm run test:cov
     - run: npm run build:test
-    - name: Display all folders for debug
-      run: ls
-    - name: Build and generate OpenAPI files
-      run: npm run open-api-gen
-    # - name: Copy Swagger files to _site
-    #   run: |
-    #     cp dist/swagger.json _site/swagger.json
-    #     cp dist/swagger.html _site/swagger.html
-    - name: Deploy
+    - run: npm open-api-gen
+    - name: Copy Swagger files to _site
+      run: |
+        cp dist/swagger.json _site/swagger.json
+        cp dist/swagger.html _site/swagger.html
+    - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
