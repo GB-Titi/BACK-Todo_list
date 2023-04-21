@@ -29,8 +29,8 @@ jobs:
     - name: Display all folders for debug
       - run: ls
     - name: Display dist/test folder content fot debug
-      run: |
-        ls dist/test
+      - run: ls dist/test
+
     # - name: Create temporary file to get MongoDB URI
     #   run: |
     #     echo "const path = require('path');" > getMongoUri.js
