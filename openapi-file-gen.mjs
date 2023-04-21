@@ -1,7 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./dist/app.module.js";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { createMongoMemoryConnection } from './dist/test/mongo-memory-connection.provider.js';
+import { createMongoMemoryConnection } from '.src/test/mongo-memory-connection.provider';
 import * as fs from "fs";
 import * as swaggerUiDist from "swagger-ui-dist";
 import * as path from "path";
