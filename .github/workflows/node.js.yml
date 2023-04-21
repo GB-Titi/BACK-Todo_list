@@ -30,9 +30,9 @@ jobs:
       run: ls
     - name: Build and generate OpenAPI files
       run: npm run open-api-gen
-    - name: Copy Swagger files to _site
-      run: |
-        cp dist/swagger.json _site/swagger.json
-        cp dist/swagger.html _site/swagger.html
+    # - name: Copy Swagger files to _site
+    #   run: |
+    #     cp dist/swagger.json _site/swagger.json
+    #     cp dist/swagger.html _site/swagger.html
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
