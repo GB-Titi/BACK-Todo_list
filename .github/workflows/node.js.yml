@@ -34,8 +34,8 @@ jobs:
     #   run: |
     #     cp dist/swagger.json _site/swagger.json
     #     cp dist/swagger.html _site/swagger.html
-    - name: Deploy to GitHub Pages
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
