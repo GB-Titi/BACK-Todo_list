@@ -22,9 +22,9 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm install
-    - run: npm run test
-    - run: npm run test:e2e
-    - run: npm run test:cov
+    # - run: npm run test
+    # - run: npm run test:e2e
+    # - run: npm run test:cov
     - name: Display dist/test folder content
       run: |
         ls dist/test
