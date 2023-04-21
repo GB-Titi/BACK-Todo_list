@@ -27,7 +27,7 @@ jobs:
     # - run: npm run test:cov
     - name: Display dist/test folder content
       run: |
-        ls dist/test
+        ls
     - name: Create temporary file to get MongoDB URI
       run: |
         echo "const path = require('path');" > getMongoUri.js
