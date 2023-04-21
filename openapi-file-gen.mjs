@@ -1,5 +1,5 @@
 import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./dist/app.module.js";
+import { TestModule } from "./dist/tests/tests.module.js";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { createMongoMemoryConnection } from './dist/test/mongo-memory-connection.provider.js';
 import * as fs from "fs";
@@ -12,7 +12,7 @@ const uri = mongod.getUri();
 
 process.env.NODE_ENV = "gen";
 process.env.MONGODB_URI = uri;
-const app = await NestFactory.create(AppModule);
+const app = await NestFactory.create(TestModule);
 const config = new DocumentBuilder()
     .setTitle(process.env.npm_package_name)
     .setDescription("Swagger pour le dev front")
