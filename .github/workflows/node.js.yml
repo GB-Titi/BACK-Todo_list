@@ -22,7 +22,6 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm install
-    - run: npm install -g ng-openapi-gen
     - run: npm run test
     - run: npm run test:e2e
     - run: npm run test:cov
