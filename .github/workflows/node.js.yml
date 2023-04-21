@@ -25,9 +25,13 @@ jobs:
     - run: npm run test
     - run: npm run test:e2e
     - run: npm run test:cov
+    - name: Display dist/test folder content
+      run: |
+        ls dist/test
     - name: Create temporary file to get MongoDB URI
       run: |
-        echo "const { createMongoMemoryConnection } = require('./dist/test/mongo-memory-connection.provider');" > getMongoUri.js
+        echo "const path = require('path');" > getMongoUri.js
+        echo "const { createMongoMemoryConnection } = require(path.join(process.cwd(), 'dist/test/mongo-memory-connection.provider'));" >> getMongoUri.js
         echo "createMongoMemoryConnection().then(({ mongod }) => console.log(mongod.getUri()));" >> getMongoUri.js
 
     - name: Set NODE_ENV and MONGODB_URI
