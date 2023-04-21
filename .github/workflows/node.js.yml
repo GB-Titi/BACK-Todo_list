@@ -29,6 +29,7 @@ jobs:
     - run: npm run open-api-gen
     - name: Copy Swagger files to _site
       run: |
+        mkdir -p _site
         cp dist/swagger.json _site/swagger.json
         cp dist/swagger.html _site/swagger.html
     - name: Deploy to GitHub Pages
