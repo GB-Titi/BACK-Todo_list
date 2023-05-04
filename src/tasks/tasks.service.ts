@@ -10,7 +10,7 @@ export class TasksService {
   constructor(
     @InjectRepository(Task)
     private taskRepository: Repository<Task>,
-  ) {}
+  ) { }
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
     const task = this.taskRepository.create(createTaskDto);
@@ -24,13 +24,12 @@ export class TasksService {
 
   async findOne(id: string): Promise<Task> {
     try {
-        const task = await this.taskRepository.findOneOrFail({ where: { id } });
-        return task;
+      const task = await this.taskRepository.findOneOrFail({ where: { id } });
+      return task;
     } catch (error) {
-        throw new NotFoundException(`Task with ID ${id} not found`);
+      throw new NotFoundException(`Task with ID ${id} not found`);
     }
-}
-
+  }
 
   async update(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
     const task = await this.findOne(id);
