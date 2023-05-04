@@ -1,72 +1,32 @@
-// import { Injectable, NotFoundException } from '@nestjs/common';
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Repository } from 'typeorm';
-// import { CreateTaskDto } from './dto/create-task.dto';
-// import { UpdateTaskDto } from './dto/update-task.dto';
-// import { Task } from './entities/task.entity';
-
-// @Injectable()
-// export class TasksService {
-//   constructor(
-//     @InjectRepository(Task)
-//     private taskRepository: Repository<Task>,
-//   ) { }
-
-//   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-//     const task = this.taskRepository.create(createTaskDto);
-//     await this.taskRepository.save(task);
-//     return task;
-//   }
-
-//   async findAll(): Promise<Task[]> {
-//     return await this.taskRepository.find();
-//   }
-
-//   async findOne(id: string): Promise<Task> {
-//     try {
-//       const task = await this.taskRepository.findOneOrFail({ where: { id } });
-//       return task;
-//     } catch (error) {
-//       throw new NotFoundException(`Task with ID ${id} not found`);
-//     }
-//   }
-
-//   async update(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
-//     const task = await this.findOne(id);
-//     const updatedTask = Object.assign(task, updateTaskDto);
-//     return await this.taskRepository.save(updatedTask);
-//   }
-
-//   async remove(id: string): Promise<void> {
-//     const task = await this.findOne(id);
-//     await this.taskRepository.remove(task);
-//   }
-// }
-
-
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Task } from './entities/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
-  create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+  constructor(@InjectModel(Task.name) private taskModel: Model<Task>) {}
+
+  async findAll(): Promise<Task[]> {
+    return this.taskModel.find().exec();
   }
 
-  findAll() {
-    return `This action returns all tasks`;
+  async findOne(id: string): Promise<Task> {
+    return this.taskModel.findById(id).exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  async create(createTaskDto: CreateTaskDto): Promise<Task> {
+    const newTask = new this.taskModel(createTaskDto);
+    return newTask.save();
   }
 
-  update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+  async update(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    return this.taskModel.findByIdAndUpdate(id, updateTaskDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} task`;
+  async remove(id: string): Promise<Task> {
+    return this.taskModel.findByIdAndRemove(id).exec();
   }
 }

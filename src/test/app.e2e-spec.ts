@@ -5,6 +5,7 @@ import { TestModule } from './tests.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
+  let taskId: string;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -13,6 +14,11 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    const createTaskResponse = await request(app.getHttpServer())
+      .post('/tasks')
+      .send({ title: 'Test Task' });
+    taskId = createTaskResponse.body._id;
   });
 
   it('/ (GET)', () => {
@@ -62,7 +68,7 @@ describe('AppController (e2e)', () => {
       .expect(201);
   });
 
-  const taskId = '666';
+  // const taskId = '666';
   const keywordId = '999';
 
   it(`/tasks/${taskId} (GET)`, () => {
@@ -81,8 +87,8 @@ describe('AppController (e2e)', () => {
       .expect(200);
   });
 
-  
-//DELETE A DECOMMENTER QUAND SERVICES FONCTIONNENT REELEMENT
+
+  //DELETE A DECOMMENTER QUAND SERVICES FONCTIONNENT REELEMENT
   // it(`/tasks/${taskId} (DELETE)`, () => {
   //   return request(app.getHttpServer())
   //     .delete(`/tasks/${taskId}`)
