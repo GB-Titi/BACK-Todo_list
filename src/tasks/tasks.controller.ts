@@ -27,20 +27,20 @@ export class TasksController {
   @ApiOperation({ summary: 'Récupérer une tâche spécifique' })
   @ApiResponse({ status: 200, description: 'Tâche trouvée' })
   findOne(@Param('id') id: string) {
-    return this.tasksService.findOne(id);
+    return this.tasksService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Mettre à jour une tâche' })
   @ApiResponse({ status: 200, description: 'Tâche mise à jour' })
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.tasksService.update(id, updateTaskDto);
+    return this.tasksService.update(+id, updateTaskDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Supprimer une tâche' })
   @ApiResponse({ status: 204, description: 'Tâche supprimée' })
   remove(@Param('id') id: string) {
-    return this.tasksService.remove(id);
+    return this.tasksService.remove(+id);
   }
 }

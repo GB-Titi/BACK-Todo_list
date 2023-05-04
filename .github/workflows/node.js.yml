@@ -22,16 +22,16 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm install
-    # - run: npm run test
-    # - run: npm run test:e2e
-    # - run: npm run test:cov
+    - run: npm run test
+    - run: npm run test:e2e
+    - run: npm run test:cov
     - run: npm run build:test
     - run: npm run open-api-gen
-    - name: Copy Swagger files to _site
-      run: |
-        mkdir -p _site
-        cp dist/swagger.json _site/swagger.json
-        cp dist/swagger.html _site/swagger.html
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    # - name: Copy Swagger files to _site
+    #   run: |
+    #     mkdir -p _site
+    #     cp dist/swagger.json _site/swagger.json
+    #     cp dist/swagger.html _site/swagger.html
+    # - name: Deploy to GitHub Pages
+    #   uses: peaceiris/actions-gh-pages@v3
 
