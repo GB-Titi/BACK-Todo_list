@@ -37,10 +37,10 @@ export class TasksController {
     return this.tasksService.update(id, updateTaskDto);
   }
 
-  @Delete(':id')
-  @ApiOperation({ summary: 'Supprimer une tâche' })
-  @ApiResponse({ status: 204, description: 'Tâche supprimée' })
-  remove(@Param('id') id: string) {
-    return this.tasksService.remove(id);
-  }
+  // @Delete(':id')
+  // @ApiOperation({ summary: 'Supprimer une tâche' })
+  // @ApiResponse({ status: 204, description: 'Tâche supprimée' })
+  // remove(@Param('id') id: string) {
+  //   return this.tasksService.remove(id);
+  // }
 }
